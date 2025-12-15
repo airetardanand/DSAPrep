@@ -730,22 +730,27 @@ mid = left + (right - left) // 2
 ### Pitfall 2: Wrong Loop Condition
 
 ```python
-# ❌ WRONG: May miss single element or cause infinite loop
-while left < right:
-    mid = left + (right - left) // 2
-    if arr[mid] == target:
-        return mid
-    # If we update left = mid, infinite loop when left+1 == right
+def wrong_binary_search(arr, target):
+    # ❌ WRONG: May miss single element or cause infinite loop
+    left, right = 0, len(arr) - 1
+    while left < right:
+        mid = left + (right - left) // 2
+        if arr[mid] == target:
+            return mid
+        # If we update left = mid, infinite loop when left+1 == right
 
-# ✓ CORRECT: Use <= for exact match, < for boundary finding
-while left <= right:  # For exact match
-    mid = left + (right - left) // 2
-    if arr[mid] == target:
-        return mid
-    elif arr[mid] < target:
-        left = mid + 1
-    else:
-        right = mid - 1
+def correct_binary_search(arr, target):
+    # ✓ CORRECT: Use <= for exact match, < for boundary finding
+    left, right = 0, len(arr) - 1
+    while left <= right:  # For exact match
+        mid = left + (right - left) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
 ```
 
 ### Pitfall 3: Incorrect Boundary Updates

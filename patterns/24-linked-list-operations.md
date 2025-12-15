@@ -64,7 +64,7 @@ def removeNthFromEnd(head, n):
     
     # Remove nth node
     slow.next = slow.next.next
-    return dummy.head
+    return dummy.next
 ```
 
 ### Linked List Cycle Detection (LeetCode 141)
